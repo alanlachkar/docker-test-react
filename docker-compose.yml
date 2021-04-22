@@ -1,0 +1,29 @@
+version: "3"
+services:
+  # Name of the container
+  web:
+    stdin_open: true
+    environment:
+      - CHOKIDAR_USEPOLLING=true
+    build:
+      # Where I find my Dockerfile
+      context: .
+      # Specify the name Docker must find
+      # === docker -f Dockerfile.dev
+      dockerfile: Dockerfile.dev
+    # === docker run -p 3000:3000
+    ports:
+      - "3000:3000"
+    # === docker run -v /app/node_modules -v $(pwd):/app
+    volumes:
+      - /app/node_modules
+      - .:/app
+  tests:
+    build:
+      context: .
+      dockerfile: Dockerfile.dev
+    volumes:
+      - /app/node_modules
+      - .:/app
+    # Override the default command
+    command: ["npm", "run", "test"]
