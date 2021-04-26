@@ -5,7 +5,7 @@ FROM node:alpine as builder
 
 WORKDIR '/app'
 
-COPY package.json .
+COPY package*.json ./
 RUN npm install
 COPY . .
 
@@ -14,6 +14,10 @@ RUN npm run build
 
 # Run Phase
 FROM nginx
+
+# For Elasticbeanstalk to map directly
+# Used to incoming traffic
+EXPOSE 80
 
 # Copy /app/build from the build phase into usr/share...
 # Error can occur because of builder name

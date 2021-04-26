@@ -12,3 +12,22 @@ before_install:
 # Tell Travis how to run our test suite
 script:
   - docker run -e CI=true alanlachkar/docker-test-react npm run test
+
+# Deployement Configuration
+deploy:
+  # Travis prepare the work by knowing the provider
+  provider: elasticbeanstalk
+  region: "us-east-2"
+  app: "docker-test-react"
+  env: "Dockertestreact-env"
+  # This can be found by searching for the S3 Storage service.
+  bucket_name: "elasticbeanstalk-us-east-2-401320705593"
+  # Folder to find inside the bucket-name
+  bucket_path: "docker-test-react"
+  # According to which branch the deployment is made
+  on:
+    branch: master
+  # Keys giving access to AWS via Travis-CI store in
+  # environment variables in settings of the project on Travis-CI site
+  access_key_id: $AWS_ACCESS_KEY
+  secret_access_key: $AWS_SECRET_KEY
