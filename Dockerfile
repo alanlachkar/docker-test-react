@@ -28,8 +28,14 @@ COPY --from=builder /app/build usr/share/nginx/html
 # the actual default CMD of the nginx image is to start nginx
 
 ########################################################
-## Comands to use in terminal
+## Comands to use in terminal to start app
 ## docker build . --> build a image with this Dockerfile
 ## docker run -p 8080:80 <container_id>
 ## Start web browser with "localhost:8080"
+
+## Comands to use in terminal to start tests
+## docker build . --> build a image with this Dockerfile
+## docker run -p 8080:80 <container_id>
+## Start web browser with "localhost:8080"
+##In another terminal write docker exec -it <container_id> npm run test
 ########################################################

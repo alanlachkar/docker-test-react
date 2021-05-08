@@ -11,3 +11,11 @@ RUN npm install
 COPY . .
 
 CMD [ "npm", "run", "start" ]
+
+
+########################################################
+## Comands to use in terminal
+## docker build -f Dockerfile.dev . --> build a image with this Dockerfile.dev
+## docker run -p 8080:80 <container_id>
+## Start web browser with "localhost:8080"
+########################################################
